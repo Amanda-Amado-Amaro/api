@@ -5,15 +5,35 @@
 
 //async/awit
 
-async function carregarUsuarios() {
+let intervalo = null;
+let emExecucao = false;
+
+async function carregarImagem() {
   try {
-    let response = await fetch("https://dog.ceo/api/breeds/image/random");
-    let data = await response.json();
- 
-    document.getElementById("imgcao"), src = data.menssage;
+    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+    const data = await response.json();
+    const img = document.getElementById("imgcao");
+    img.src = data.message;
   } catch (error) {
-    console.log("erro ao buscar os dados : ", error);
+    console.log("Erro ao buscar os dados:", error);
   }
 }
-let botao = document.getElementById("btcao");
-botao.addEventListener("click", carregarUsuarios);
+
+const botao = document.getElementById("btcao");
+
+botao.addEventListener("click", () => {
+  if (!emExecucao) {
+ 
+    carregarImagem(); 
+    intervalo = setInterval(carregarImagem, 3000);
+    botao.textContent = "Parar";
+  } else {
+  
+    clearInterval(intervalo);
+    intervalo = null;
+    botao.textContent = "Clique";
+  }
+
+  emExecucao = !emExecucao;
+});
+

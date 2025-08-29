@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+#corpo {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#imgcao {
+  height: 400px;
+  width: 400px;
+}
+#legenda {
+  display: flex;
+  align-items: flex-start;
+}
+body {
+  background-image: url('image.png');
+  background-size: cover;
+}
